@@ -1,5 +1,6 @@
 import React from 'react';
+import * as Sc from './styled';
 
 export default function Home() {
-	return <div>Not found</div>;
+	return <Sc.Container>Not found</Sc.Container>;
 }

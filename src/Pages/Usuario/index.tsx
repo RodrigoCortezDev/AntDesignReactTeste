@@ -1,5 +1,6 @@
 import React from 'react';
+import * as Sc from './styled';
 
 export default function Usuario() {
-	return <div>Home</div>;
+	return <Sc.Container>Usuário</Sc.Container>;
 }
