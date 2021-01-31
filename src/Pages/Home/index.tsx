@@ -14,6 +14,7 @@ export default function Home() {
 			>
 				Clique aqui
 			</Sc.MyButton>
+			<Sc.AttributeButton>Teste</Sc.AttributeButton>
 		</Master>
 	);
 }

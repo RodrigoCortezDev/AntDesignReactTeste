@@ -18,3 +18,16 @@ export const MyButton = styled(Button)`
 		background-color: black;
 	}
 `;
+
+export const AttributeButton = styled(Button).attrs(props => {
+	//const { type = 'button', danger  = true } = props;
+	return { type: 'ghost', danger: true };
+})`
+	background-color: red;
+`;
+
+export const PropsBox = styled.div(() => ({
+	background: 'red',
+	height: '50px',
+	width: '50px',
+}));
