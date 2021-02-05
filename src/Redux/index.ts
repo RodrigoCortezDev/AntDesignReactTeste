@@ -10,8 +10,8 @@ export interface IStore {
 //==============================================================
 //Tipo do Dispatch
 export interface IDispatchAction extends Action {
-	partialData?: Partial<IStore>;
-	data?: IStore;
+	partialData?: Partial<IStore>; //usado para passar partes do objeto no reducer
+	data?: IStore; //usado para passar o objeto completo
 }
 
 //==============================================================
@@ -32,7 +32,7 @@ export enum ActionType {
 }
 
 //==============================================================
-//Reducer que recebe as ações do Dispatcher
+//Reducer que recebe as ações do Dispatcher e realiza a alteração de estado
 export const rootReducer: Reducer<IStore, IDispatchAction> = (state = initialState, action) => {
 	if (action.type === ActionType.UpdateLogin) {
 		return { ...state, login: action.partialData?.login || '' };
@@ -67,5 +67,5 @@ export class RootDispatcher {
 }
 
 //==============================================================
-//Objeto resposavel pelo Store que é definido no inicio do projeto
+//Objeto resposavel pelo Store que é definido no inicio do projeto (no arquivo App.tsx)
 export const store = createStore<IStore, IDispatchAction, null, null>(rootReducer);
