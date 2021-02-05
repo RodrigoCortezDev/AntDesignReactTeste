@@ -29,7 +29,6 @@ export default function Home() {
 					setAuth({ login: new Date().toLocaleString(), theme: '1' });
 					rootDispatcher.updateCustom({ login: 'XXXXXXX' });
 					rootDispatcher.updateTheme('Thema 1');
-					rootDispatcher.updateLogin('Rodrigo');
 				}}
 			>
 				Clique aqui

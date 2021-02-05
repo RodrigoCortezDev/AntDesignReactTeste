@@ -27,7 +27,6 @@ export enum ActionType {
 	UpdateLogin,
 	UpdateTheme,
 	DeleteLogin,
-	DeleteTheme,
 	UpdateCustom,
 }
 
@@ -38,8 +37,6 @@ export const rootReducer: Reducer<IStore, IDispatchAction> = (state = initialSta
 		return { ...state, login: action.partialData?.login || '' };
 	} else if (action.type === ActionType.DeleteLogin) {
 		return { ...state, login: '' };
-	} else if (action.type === ActionType.DeleteTheme) {
-		return { ...state, theme: '' };
 	} else if (action.type === ActionType.UpdateTheme) {
 		return { ...state, theme: action.partialData?.theme || '' };
 	} else if (action.type === ActionType.UpdateCustom) {
@@ -62,8 +59,6 @@ export class RootDispatcher {
 	updateCustom = (obj: IStore) => this.dispatch({ type: ActionType.UpdateCustom, data: obj });
 
 	deleteLogin = () => this.dispatch({ type: ActionType.DeleteLogin, partialData: {} });
-
-	deleteAddress = () => this.dispatch({ type: ActionType.DeleteTheme, partialData: {} });
 }
 
 //==============================================================
