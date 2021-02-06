@@ -7,16 +7,22 @@ import { IStore, RootDispatcher } from '../../Redux';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
+	//Context API
 	const { auth, setAuth } = useAuth();
-	const { login, theme } = useSelector<IStore, IStore>((state: IStore) => {
-		return {
-			login: state.login,
-			theme: state.theme,
-		};
-	});
 
-	const dispatch = useDispatch();
-	const rootDispatcher = new RootDispatcher(dispatch);
+	//REDUX - 1 forma
+	// const { login, theme } = useSelector<IStore, IStore>((state: IStore) => {
+	// 	return {
+	// 		login: state.login,
+	// 		theme: state.theme,
+	// 	};
+	// });
+	// const dispatch = useDispatch();
+	// const rootDispatcher = new RootDispatcher(dispatch);
+
+	//REDUX - 2 forma
+	const { login, theme } = useSelector((store: IStore) => store);
+	const rootDispatcher = new RootDispatcher(useDispatch());
 
 	return (
 		<Master headerText="Home page">

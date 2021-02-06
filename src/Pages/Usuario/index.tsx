@@ -6,15 +6,19 @@ import { IStore, RootDispatcher } from '../../Redux';
 import * as Sc from './styled';
 
 export default function Usuario() {
-	const { login, theme } = useSelector<IStore, IStore>((state: IStore) => {
-		return {
-			login: state.login,
-			theme: state.theme,
-		};
-	});
+	//REDUX - 1 forma
+	// const { login, theme } = useSelector<IStore, IStore>((state: IStore) => {
+	// 	return {
+	// 		login: state.login,
+	// 		theme: state.theme,
+	// 	};
+	// });
+	// const dispatch = useDispatch();
+	// const rootDispatcher = new RootDispatcher(dispatch);
 
-	const dispatch = useDispatch();
-	const rootDispatcher = new RootDispatcher(dispatch);
+	//REDUX - 2 forma
+	const { login, theme } = useSelector((store: IStore) => store);
+	const rootDispatcher = new RootDispatcher(useDispatch());
 
 	return (
 		<Sc.Container>
