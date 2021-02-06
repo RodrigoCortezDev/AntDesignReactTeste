@@ -1,12 +1,36 @@
-import React from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import * as Sc from './styled';
 import Master from '../Master';
 import { useAuth } from '../../ContextAPI/Auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { IStore, RootDispatcher } from '../../Redux';
 import { Link } from 'react-router-dom';
+import getData from '../../Redux/getData';
 
 export default function Home() {
+	//States
+	const [loading, setLoading] = useState(false);
+
+	const dispacher = useDispatch();
+	const rootDispatcher = useMemo(() => new RootDispatcher(dispacher), [dispacher]);
+
+	const Consultar = useCallback(async () => {
+		setLoading(true);
+		await getData()
+			.then(resp => {
+				rootDispatcher.updateCustom(resp);
+				setLoading(false);
+			})
+			.catch(erro => {
+				rootDispatcher.updateCustom({ login: erro, theme: '' });
+				setLoading(false);
+			});
+	}, [rootDispatcher]);
+
+	// useEffect(() => {
+	// 	Consultar();
+	// }, [Consultar]);
+
 	//Context API
 	const { auth, setAuth } = useAuth();
 
@@ -21,10 +45,13 @@ export default function Home() {
 	// const rootDispatcher = new RootDispatcher(dispatch);
 
 	//REDUX - 2 forma
-	const { login, theme } = useSelector((store: IStore) => store);
-	const rootDispatcher = new RootDispatcher(useDispatch());
+	//const { login, theme } = useSelector((store: IStore) => store);
+	const login = useSelector((store: IStore) => store.login);
+	const theme = useSelector((store: IStore) => store.theme);
 
-	return (
+	return loading ? (
+		<Sc.MySpin size="large" />
+	) : (
 		<Master headerText="Home page">
 			<Sc.Container>
 				{auth?.login} - {String(login)} - {String(theme)} - Home
@@ -39,7 +66,13 @@ export default function Home() {
 			>
 				Clique aqui
 			</Sc.MyButton>
-			<Sc.AttributeButton>Teste</Sc.AttributeButton>
+			<Sc.AttributeButton
+				onClick={() => {
+					if (!login) Consultar();
+				}}
+			>
+				Teste
+			</Sc.AttributeButton>
 			<Link to="/usuario">Ir para Usuario</Link>
 		</Master>
 	);

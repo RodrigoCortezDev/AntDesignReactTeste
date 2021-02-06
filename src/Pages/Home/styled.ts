@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DatePicker, Button } from 'antd';
+import { DatePicker, Button, Spin } from 'antd';
 
 export const Container = styled.div`
 	display: flex;
@@ -17,6 +17,12 @@ export const MyButton = styled(Button)`
 	&:hover {
 		background-color: black;
 	}
+`;
+
+export const MySpin = styled(Spin)`
+	position: absolute;
+	left: 50%;
+	top: 50%;
 `;
 
 export const AttributeButton = styled(Button).attrs(props => {
