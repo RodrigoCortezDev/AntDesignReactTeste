@@ -33,15 +33,18 @@ export enum ActionType {
 //==============================================================
 //Reducer que recebe as ações do Dispatcher e realiza a alteração de estado
 export const rootReducer: Reducer<IStore, IDispatchAction> = (state = initialState, action) => {
-	if (action.type === ActionType.UpdateLogin) {
-		return { ...state, login: action.partialData?.login || '' };
-	} else if (action.type === ActionType.DeleteLogin) {
-		return { ...state, login: '' };
-	} else if (action.type === ActionType.UpdateTheme) {
-		return { ...state, theme: action.partialData?.theme || '' };
-	} else if (action.type === ActionType.UpdateCustom) {
-		return { ...state, ...action.data };
-	} else return state;
+	switch (action.type) {
+		case ActionType.UpdateLogin:
+			return { ...state, login: action.partialData?.login || '' };
+		case ActionType.DeleteLogin:
+			return { ...state, login: '' };
+		case ActionType.UpdateTheme:
+			return { ...state, theme: action.partialData?.theme || '' };
+		case ActionType.UpdateCustom:
+			return { ...state, ...action.data };
+		default:
+			return state;
+	}
 };
 
 //==============================================================
