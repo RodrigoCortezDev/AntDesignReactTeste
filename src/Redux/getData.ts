@@ -6,7 +6,7 @@ interface IJsonReturn {
 }
 
 export default async function getData(): Promise<IJsonReturn> {
-	return Api.get<IJsonReturn>('/appointments', {
+	return Api.get<IJsonReturn>('api/palavras/2', {
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -14,10 +14,12 @@ export default async function getData(): Promise<IJsonReturn> {
 		return res.data;
 	});
 
-	// return fetch('http://localhost:3333/appointments', {
-	// 	headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-	// }).then((res: Response) => {
-	// 	console.log(res);
-	// 	return res.json();
+	// return Api.get<IJsonReturn>('/appointments', {
+	// 	headers: {
+	// 		'Content-Type': 'application/json',
+	// 	},
+	// 	params: { mode: 'no-cors' },
+	// }).then(res => {
+	// 	return res.data;
 	// });
 }
