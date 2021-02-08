@@ -45,16 +45,16 @@ export default function Home() {
 	// const rootDispatcher = new RootDispatcher(dispatch);
 
 	//REDUX - 2 forma
-	//const { login, theme } = useSelector((store: IStore) => store);
-	const login = useSelector((store: IStore) => store.login);
-	const theme = useSelector((store: IStore) => store.theme);
+	const obj = useSelector((store: IStore) => store);
+	//const login = useSelector((store: IStore) => store.login);
+	//const theme = useSelector((store: IStore) => store.theme);
 
 	return loading ? (
 		<Sc.MySpin size="large" />
 	) : (
 		<Master headerText="Home page">
 			<Sc.Container>
-				{auth?.login} - {String(login)} - {String(theme)} - Home
+				{auth?.login} - {String(obj.login)} - {String(obj.theme)} - Home
 			</Sc.Container>
 			<Sc.MyDatePicker format="DD/MM/yyyy">Escolha a data</Sc.MyDatePicker>
 			<Sc.MyButton
@@ -68,7 +68,7 @@ export default function Home() {
 			</Sc.MyButton>
 			<Sc.AttributeButton
 				onClick={() => {
-					if (!login) Consultar();
+					if (!obj.login) Consultar();
 				}}
 			>
 				Teste

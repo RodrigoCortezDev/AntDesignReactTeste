@@ -55,6 +55,7 @@ export class RootDispatcher {
 	constructor(dispatch: Dispatch<IDispatchAction>) {
 		this.dispatch = dispatch;
 	}
+
 	updateLogin = (login: string) => this.dispatch({ type: ActionType.UpdateLogin, partialData: { login } });
 
 	updateTheme = (theme: string) => this.dispatch({ type: ActionType.UpdateTheme, partialData: { theme } });
