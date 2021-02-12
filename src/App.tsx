@@ -7,15 +7,20 @@ import ptBR from 'antd/lib/locale/pt_BR';
 import { AuthProvider } from './ContextAPI/Auth';
 import { Provider } from 'react-redux';
 import { store } from './Redux';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
 function App() {
+	const queryClient = new QueryClient();
+
 	return (
 		<ConfigProvider locale={ptBR}>
-			<Provider store={store}>
-				<AuthProvider>
-					<Routes />
-				</AuthProvider>
-			</Provider>
+			<QueryClientProvider client={queryClient}>
+				<Provider store={store}>
+					<AuthProvider>
+						<Routes />
+					</AuthProvider>
+				</Provider>
+			</QueryClientProvider>
 		</ConfigProvider>
 	);
 }

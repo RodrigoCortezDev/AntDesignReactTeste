@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { IStore, RootDispatcher } from '../../Redux';
 import * as Sc from './styled';
+import { useQuery } from 'react-query';
+import getData from '../../Redux/getData';
 
 export default function Usuario() {
 	//REDUX - 1 forma
@@ -20,6 +22,8 @@ export default function Usuario() {
 	const { login, theme } = useSelector((store: IStore) => store);
 	const rootDispatcher = new RootDispatcher(useDispatch());
 
+	const { status, data } = useQuery('dataAth', getData);
+
 	return (
 		<Sc.Container>
 			Usuário: {login}. thema: {theme}
@@ -32,7 +36,10 @@ export default function Usuario() {
 				Clique aqui
 			</Button>
 			<br />
-			<Link to="/">Voltar a Home</Link>
+			<p>
+				{status} - Data: {JSON.stringify(data)}{' '}
+			</p>
+			<Link to="/"> Voltar a Home </Link>
 		</Sc.Container>
 	);
 }

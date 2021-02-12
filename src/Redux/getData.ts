@@ -11,6 +11,8 @@ export default async function getData(): Promise<IJsonReturn> {
 			'Content-Type': 'application/json',
 		},
 	}).then(res => {
+		console.log('Chamou API');
+
 		return res.data;
 	});
 

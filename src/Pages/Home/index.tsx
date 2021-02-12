@@ -6,8 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IStore, RootDispatcher } from '../../Redux';
 import { Link } from 'react-router-dom';
 import getData from '../../Redux/getData';
+import { useQuery } from 'react-query';
 
 export default function Home() {
+	//query
+	const { status, data } = useQuery('dataAth', getData);
+
 	//States
 	const [loading, setLoading] = useState(false);
 
@@ -74,6 +78,10 @@ export default function Home() {
 				Teste
 			</Sc.AttributeButton>
 			<Link to="/usuario">Ir para Usuario</Link>
+			<br />
+			<p>
+				{status} - Data: {JSON.stringify(data)}{' '}
+			</p>
 		</Master>
 	);
 }
