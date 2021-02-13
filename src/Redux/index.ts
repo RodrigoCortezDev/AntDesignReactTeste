@@ -16,10 +16,18 @@ export interface IDispatchAction extends Action {
 
 //==============================================================
 //Objeto inicial a ser armazenado
-export const initialState: IStore = {
-	login: '',
-	theme: '',
-};
+function getLocalStorage() {
+	try {
+		return JSON.parse(localStorage.getItem('store') || '') as IStore;
+	} catch {
+		return {
+			login: '',
+			theme: '',
+		};
+	}
+}
+
+export const initialState: IStore = getLocalStorage();
 
 //==============================================================
 //Enumerados com as ações possiveis

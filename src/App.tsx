@@ -4,23 +4,23 @@ import Routes from './routes';
 import 'antd/dist/antd.css';
 import { ConfigProvider } from 'antd';
 import ptBR from 'antd/lib/locale/pt_BR';
-import { AuthProvider } from './ContextAPI/Auth';
-import { Provider } from 'react-redux';
-import { store } from './Redux';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { useStore } from 'react-redux';
 
 function App() {
-	const queryClient = new QueryClient();
+	//Foi definido aqui pois o provider precisa estar um nivel acima
+	//E coloquei no App para não ser chamado varias vezes.
+	const store = useStore();
+	store.subscribe(() => {
+		const state = store.getState();
+		localStorage.setItem('store', JSON.stringify(state));
+	});
 
 	return (
 		<ConfigProvider locale={ptBR}>
-			<QueryClientProvider client={queryClient}>
-				<Provider store={store}>
-					<AuthProvider>
-						<Routes />
-					</AuthProvider>
-				</Provider>
+			<QueryClientProvider client={new QueryClient()}>
+				<Routes />
 				<ReactQueryDevtools initialIsOpen={false} />
 			</QueryClientProvider>
 		</ConfigProvider>

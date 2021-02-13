@@ -68,8 +68,8 @@ export default function Home() {
 			<Sc.MyButton
 				onClick={() => {
 					setAuth({ login: new Date().toLocaleString(), theme: '1' });
-					rootDispatcher.updateCustom({ login: 'XXXXXXX' });
-					rootDispatcher.updateTheme('Thema 1');
+					rootDispatcher.updateCustom({ login: 'Rodrigo Novo' });
+					rootDispatcher.updateTheme('Thema 2');
 				}}
 			>
 				Clique aqui
