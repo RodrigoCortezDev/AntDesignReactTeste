@@ -12,7 +12,6 @@ export default async function getData(): Promise<IJsonReturn> {
 		},
 	}).then(res => {
 		console.log('Chamou API');
-
 		return res.data;
 	});
 

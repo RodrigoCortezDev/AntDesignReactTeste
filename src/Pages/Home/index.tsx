@@ -10,7 +10,11 @@ import { useQuery } from 'react-query';
 
 export default function Home() {
 	//query
-	const { status, data } = useQuery('dataAth', getData);
+	const { status, data } = useQuery('dataAth', getData, {
+		refetchIntervalInBackground: true,
+		refetchInterval: 5000,
+		refetchOnWindowFocus: false,
+	});
 
 	//States
 	const [loading, setLoading] = useState(false);

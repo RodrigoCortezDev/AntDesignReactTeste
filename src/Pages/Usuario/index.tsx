@@ -22,7 +22,11 @@ export default function Usuario() {
 	const { login, theme } = useSelector((store: IStore) => store);
 	const rootDispatcher = new RootDispatcher(useDispatch());
 
-	const { status, data } = useQuery('dataAth', getData);
+	const { status, data } = useQuery('dataAth', getData, {
+		refetchIntervalInBackground: true,
+		refetchInterval: 5000,
+		refetchOnWindowFocus: false,
+	});
 
 	return (
 		<Sc.Container>

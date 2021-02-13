@@ -8,6 +8,7 @@ import { AuthProvider } from './ContextAPI/Auth';
 import { Provider } from 'react-redux';
 import { store } from './Redux';
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 function App() {
 	const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ function App() {
 						<Routes />
 					</AuthProvider>
 				</Provider>
+				<ReactQueryDevtools initialIsOpen={false} />
 			</QueryClientProvider>
 		</ConfigProvider>
 	);
