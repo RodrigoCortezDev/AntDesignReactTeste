@@ -9,7 +9,7 @@ import getData from '../../Redux/getData';
 import { useQuery } from 'react-query';
 
 export default function Home() {
-	//query 3
+	//query
 	const { status, data } = useQuery('dataAth', getData, {
 		refetchIntervalInBackground: true,
 		refetchInterval: 5000,
