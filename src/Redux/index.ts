@@ -35,13 +35,13 @@ export enum ActionType {
 export const rootReducer: Reducer<IStore, IDispatchAction> = (state = initialState, action) => {
 	switch (action.type) {
 		case ActionType.UpdateLogin:
-			return { ...state, login: action.partialData?.login || '' };
+			return { ...state, login: action.partialData?.login || initialState.login };
 		case ActionType.DeleteLogin:
 			return { ...state, login: '' };
 		case ActionType.UpdateTheme:
-			return { ...state, theme: action.partialData?.theme || '' };
+			return { ...state, theme: action.partialData?.theme || initialState.theme };
 		case ActionType.UpdateCustom:
-			return { ...state, ...action.data };
+			return { ...state, ...(action.data || initialState) };
 		default:
 			return state;
 	}
