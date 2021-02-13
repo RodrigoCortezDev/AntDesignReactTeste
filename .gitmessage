@@ -1,10 +1,12 @@
-Subject
+#Title of commit
 
-Problem
+
 # Problem, Task, Reason for Commit
+Problem:
 
-Solution
 # Solution or List of Changes
+Solution:
 
-Note
 # Special instructions, testing steps, rake, etc
+Note:
+
