@@ -62,7 +62,7 @@ export default function Home() {
 	) : (
 		<Master headerText="Home page">
 			<Sc.Container>
-				{auth?.login} - {String(obj.login)} - {String(obj.theme)} - Home
+				{auth?.login} - {obj.login} - {obj.theme} - {obj.user.name}
 			</Sc.Container>
 			<Sc.MyDatePicker format="DD/MM/yyyy">Escolha a data</Sc.MyDatePicker>
 			<Sc.MyButton
@@ -70,6 +70,8 @@ export default function Home() {
 					setAuth({ login: new Date().toLocaleString(), theme: '1' });
 					rootDispatcher.updateCustom({ login: 'Rodrigo Novo' });
 					rootDispatcher.updateTheme('Thema 2');
+					rootDispatcher.updateUser({ age: 10 });
+					rootDispatcher.updateUserName('UserNameLegal 2');
 				}}
 			>
 				Clique aqui

@@ -3,15 +3,19 @@ import { Action, createStore, Dispatch, Reducer } from 'redux';
 //==============================================================
 //Tipo do objeto a ser armazenado
 export interface IStore {
-	login?: string;
-	theme?: string;
+	login: string;
+	theme: string;
+	user: IUser;
 }
-
+export interface IUser {
+	name: string;
+	age: number;
+}
 //==============================================================
 //Tipo do Dispatch
 export interface IDispatchAction extends Action {
 	partialData?: Partial<IStore>; //usado para passar partes do objeto no reducer
-	data?: IStore; //usado para passar o objeto completo
+	partialUser?: Partial<IUser>;
 }
 
 //==============================================================
@@ -20,10 +24,12 @@ function getLocalStorage() {
 	try {
 		return JSON.parse(localStorage.getItem('store') || '') as IStore;
 	} catch {
+		localStorage.removeItem('store');
 		return {
 			login: '',
 			theme: '',
-		};
+			user: { name: '', age: 0 },
+		} as IStore;
 	}
 }
 
@@ -36,6 +42,7 @@ export enum ActionType {
 	UpdateTheme,
 	DeleteLogin,
 	UpdateCustom,
+	UpdateUser,
 }
 
 //==============================================================
@@ -49,7 +56,9 @@ export const rootReducer: Reducer<IStore, IDispatchAction> = (state = initialSta
 		case ActionType.UpdateTheme:
 			return { ...state, theme: action.partialData?.theme || initialState.theme };
 		case ActionType.UpdateCustom:
-			return { ...state, ...(action.data || initialState) };
+			return { ...state, ...(action.partialData || initialState) };
+		case ActionType.UpdateUser:
+			return { ...state, user: { ...state.user, ...(action.partialUser || initialState.user) } };
 		default:
 			return state;
 	}
@@ -68,7 +77,11 @@ export class RootDispatcher {
 
 	updateTheme = (theme: string) => this.dispatch({ type: ActionType.UpdateTheme, partialData: { theme } });
 
-	updateCustom = (obj: IStore) => this.dispatch({ type: ActionType.UpdateCustom, data: obj });
+	updateCustom = (obj: Partial<IStore>) => this.dispatch({ type: ActionType.UpdateCustom, partialData: obj });
+
+	updateUser = (obj: Partial<IUser>) => this.dispatch({ type: ActionType.UpdateUser, partialUser: obj });
+
+	updateUserName = (name: string) => this.dispatch({ type: ActionType.UpdateUser, partialUser: { name } });
 
 	deleteLogin = () => this.dispatch({ type: ActionType.DeleteLogin, partialData: {} });
 }

@@ -19,7 +19,7 @@ export default function Usuario() {
 	// const rootDispatcher = new RootDispatcher(dispatch);
 
 	//REDUX - 2 forma
-	const { login, theme } = useSelector((store: IStore) => store);
+	const { login, theme, user } = useSelector((store: IStore) => store);
 	const rootDispatcher = new RootDispatcher(useDispatch());
 
 	const { status, data } = useQuery('dataAth', getData, {
@@ -30,7 +30,7 @@ export default function Usuario() {
 
 	return (
 		<Sc.Container>
-			Usuário: {login}. thema: {theme}
+			Usuário: {login}. thema: {theme}, UserName: {user.name}
 			<br />
 			<Button
 				onClick={() => {
