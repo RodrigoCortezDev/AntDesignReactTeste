@@ -24,12 +24,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "testc": "react-scripts test --coverage --watchAll false",
+    "testc:watch": "react-scripts test --coverage --watchAll true",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/Components/**/*.tsx",
+      "src/Pages/**/*.tsx"
     ]
   },
   "browserslist": {

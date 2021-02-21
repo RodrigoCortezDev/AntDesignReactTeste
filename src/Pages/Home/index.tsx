@@ -85,6 +85,8 @@ export default function Home() {
 			</Sc.AttributeButton>
 			<Link to="/usuario">Ir para Usuario</Link>
 			<br />
+			<Link to="/notfoundpage">Ir para Not Found</Link>
+			<br />
 			<p>
 				{status} - Data: {JSON.stringify(data)}{' '}
 			</p>

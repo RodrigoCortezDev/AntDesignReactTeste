@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from './Pages/Home';
 import Usuario from './Pages/Usuario';
+import NotFound from './Pages/NotFoundPage';
 
 const routes = () => {
 	return (
@@ -13,6 +14,9 @@ const routes = () => {
 				</Route>
 				<Route path="/Usuario">
 					<Usuario />
+				</Route>
+				<Route path="/NotFoundPage">
+					<NotFound />
 				</Route>
 				<Route path="/">
 					<Home />
